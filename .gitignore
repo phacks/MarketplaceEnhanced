@@ -4,3 +4,4 @@
 *.jar
 *.war
 *.ear
+/JavaApplication2/nbproject/private/

@@ -4,3 +4,6 @@
 *.jar
 *.war
 *.ear
+/JavaApplication2/nbproject/private/
+/MarketplaceEnhanced/nbproject/private/
+/MarketplaceEnhanced/build/

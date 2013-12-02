@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface ServerInterface extends Remote {
-	void registerClient(ClientInterface client) throws RemoteException;
+	void registerClient(ClientInterface client, char[] password) throws RemoteException, RejectedException;
 	public void unregisterClient(ClientInterface client) throws RemoteException;
 	List<ClientInterface> getClients() throws RemoteException;
 	void addItemToSell(Item item) throws RemoteException;

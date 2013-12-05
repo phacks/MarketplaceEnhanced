@@ -75,8 +75,8 @@ public class WishListPanel extends JPanel implements ActionListener {
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
 			}
-			JOptionPane.showMessageDialog(null,"You wish " + nameI + " at the following price : " + priceI + " SEK");
-			try {
+			//JOptionPane.showMessageDialog(null,"You wish " + nameI + " at the following price : " + priceI + " SEK");
+                        /*try {
 				Iterator<WishInterface> it = client.getServer().getWishTable().iterator();
 				listWishPanel.repaint();
 				listWishPanel.revalidate();
@@ -89,7 +89,7 @@ public class WishListPanel extends JPanel implements ActionListener {
 				}
 			} catch (RemoteException r) {
 				r.printStackTrace();
-			}
+			}*/
 			
 		}	
 	}

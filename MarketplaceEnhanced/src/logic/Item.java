@@ -1,6 +1,7 @@
 package logic;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 @SuppressWarnings("serial")
 public class Item implements Serializable {
@@ -8,7 +9,7 @@ public class Item implements Serializable {
 	private ClientInterface owner;
 	private String description;
 	private String price;
-	private int id;
+	private UUID id;
 	private boolean onSale = false;
 	static int counter = 1;
 
@@ -18,8 +19,7 @@ public class Item implements Serializable {
 		this.setDescription(description);
 		this.setPrice(price);
 		this.setonSale(onSale);
-		setId(counter);
-		counter ++;
+		id = UUID.randomUUID();
 	}
 
 	public String getPrice(){
@@ -62,11 +62,11 @@ public class Item implements Serializable {
 		this.onSale = onSale;	
 	}
 
-	public int getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 	

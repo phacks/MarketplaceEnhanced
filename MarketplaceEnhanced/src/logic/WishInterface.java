@@ -2,6 +2,7 @@ package logic;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.UUID;
 
 public interface WishInterface extends Remote {
 
@@ -11,5 +12,7 @@ public interface WishInterface extends Remote {
 	public void setWisher(ClientInterface wisher) throws RemoteException;
 	public String getPriceItem() throws RemoteException;
 	public void setPriceItem(String priceItem) throws RemoteException;
+        public UUID getUUID() throws RemoteException;
+	public void setUUID(UUID uuid) throws RemoteException;
 	
 }

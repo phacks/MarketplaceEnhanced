@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 import javax.swing.JPanel;
 
@@ -32,7 +33,7 @@ public class MainPanel extends JPanel {
 		this.revalidate();
 	}
 
-	public void setMarketplace(MyClient client, String name) throws RemoteException {
+	public void setMarketplace(MyClient client, String name) throws RemoteException, SQLException {
 		MarketplacePanel marketplacePanel = new MarketplacePanel(this, client,name);
 		this.removeAll();
 		this.add(marketplacePanel);

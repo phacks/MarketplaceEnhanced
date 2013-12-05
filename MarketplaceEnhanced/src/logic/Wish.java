@@ -3,17 +3,20 @@ package logic;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.UUID;
 
 @SuppressWarnings("serial")
 public class Wish extends UnicastRemoteObject implements Serializable, WishInterface {
 	private String nameItem;
 	private ClientInterface wisher;
 	private String priceItem;
+        private UUID id;
 	
 	public Wish(String nameItem, ClientInterface wisher, String priceItem) throws RemoteException {
 		this.setNameItem(nameItem);
 		this.setWisher(wisher);
 		this.setPriceItem(priceItem);
+                id = UUID.randomUUID();
 	}
 
 	public String getNameItem() {
@@ -38,6 +41,14 @@ public class Wish extends UnicastRemoteObject implements Serializable, WishInter
 
 	public void setPriceItem(String priceItem) {
 		this.priceItem = priceItem;
+	}
+        
+        public UUID getUUID() {
+		return id;
+	}
+
+	public void setUUID(UUID uuid) {
+		this.id = id;
 	}
 
 }

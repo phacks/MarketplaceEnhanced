@@ -11,6 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 @SuppressWarnings("serial")
 public class MyClient extends UnicastRemoteObject implements ClientInterface {
@@ -68,8 +69,7 @@ public class MyClient extends UnicastRemoteObject implements ClientInterface {
 	public void removeItem(Item item){
 		if (getMyItemTable().contains(item)) {
 			getMyItemTable().remove(item);
-		}
-		
+		}		
 	}
 
 	public static void main(String args[]) throws NotBoundException, IOException {
@@ -80,13 +80,15 @@ public class MyClient extends UnicastRemoteObject implements ClientInterface {
 		return myItemTable;
 	}
 
-	public void removeItemMarket(Item inputItem, int inputId){
-		int id = inputItem.getId();
+	public void removeItemMarket(UUID inputId){
+		//int id = inputItem.getId();
 		Iterator<Item> it = getMyItemTable().iterator();
 		Item item;
 		while (it.hasNext()){
+                    System.out.println("Dans le while");
 			item = it.next();
-			if (item.getId()==id){
+			if (item.getId().equals(inputId)){
+                            System.out.println("Dans le if");
 				item.setonSale(false);
 				break;
 			}
@@ -97,18 +99,18 @@ public class MyClient extends UnicastRemoteObject implements ClientInterface {
 		this.myItemTable = myItemTable;
 	}
 
-	public boolean itemSold(Item item) {
-		new PopUpThread("Item " + item.getName() +  " sold at the price : " + item.getPrice()).start(); 
+	public boolean itemSold() {
+		new PopUpThread("Item sold").start(); 
 		return true;
 	}
 	
-	public void removeItemSold(Item inputItem,int inputId){
-		int id = inputItem.getId();
+	public void removeItemSold(String inputId){
+		//UUID id = inputItem.getId();
 		Iterator<Item> it = getMyItemTable().iterator();
 		Item item;
 		while (it.hasNext()){
 			item = it.next();
-			if (item.getId()==id){
+			if (((item.getId()).toString()).equals(inputId)){
 				myItemTable.remove(item);
 				break;
 			}
@@ -119,8 +121,35 @@ public class MyClient extends UnicastRemoteObject implements ClientInterface {
 		new PopUpThread("This item is too expensive").start();
 	}
 	
-	public void wishAvailable(Item item){
-		new PopUpThread("Item " + item.getName() + " available at the following price " + item.getPrice()).start();
+	public void wishAvailable(){
+		new PopUpThread("One item you are looking for is available").start();
 	}
 
+        public void alreadyExistsPopUp(){
+            new PopUpThread("This client already exists").start();
+        }
+        
+        public void passwordInvalidPopUp(){
+            new PopUpThread("Rejected : Password must be at least 8 characters long ").start();
+        }
+        
+        public void registrationOKPopUp(){
+            new PopUpThread("You are registered now, please sign in to continue").start();
+        }
+        
+        public void wrongPasswordPopUp(){
+            new PopUpThread("Wrong password").start();
+        }
+        
+        public void clientNotRegisteredPopUp(){
+            new PopUpThread("This client is not registered").start();
+        }
+        
+        public void wishAlreadyExistsPopUp(){
+            new PopUpThread("You have already made this wish").start();
+        }
+        
+        public void wishRegistered(){
+            new PopUpThread("Your wish is registered").start();
+        }
 }

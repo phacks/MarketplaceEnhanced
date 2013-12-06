@@ -42,8 +42,6 @@ public class BankServer extends UnicastRemoteObject implements BankInterface {
         super();
         System.out.println("Bank console");
         LocateRegistry.createRegistry(Integer.parseInt(port));
-        //String[] command = new String[]{"rmiregistry",port};
-        //Runtime.getRuntime().exec(command);
         Naming.rebind("rmi://localhost:" + serverValue + "/bank", this);
         Connection connection = null;
         try {
@@ -120,15 +118,11 @@ public class BankServer extends UnicastRemoteObject implements BankInterface {
             findClientStatement.setString(1, owner);
             result = findClientStatement.executeQuery();
             if (result.next()) {              
-                /*String lsSQL = ("SELECT amount WHERE NAME = '" + owner + "'");
-                result = checkAccountStatement.executeQuery(lsSQL);
-                result.next();*/
                 amount = checkAccount(owner);
                 System.out.println(amount);
                 total = Integer.toString(sum + Integer.parseInt(amount));
                 String lsSQL2 = ("UPDATE LOGIN_BANK SET amount = '" + total + "' WHERE NAME = '" + owner + "'");
                 checkAccountStatement.executeUpdate(lsSQL2);
-                //result.next();
                 result.close();
             }
         } catch (SQLException ex) {
@@ -143,16 +137,12 @@ public class BankServer extends UnicastRemoteObject implements BankInterface {
         try {
             findClientStatement.setString(1, buyer);
             result = findClientStatement.executeQuery();
-            if (result.next()) {              
-                /*String lsSQL = ("SELECT amount WHERE NAME = '" + owner + "'");
-                result = checkAccountStatement.executeQuery(lsSQL);
-                result.next();*/
+            if (result.next()) { 
                 amount = checkAccount(buyer);
                 System.out.println(amount);
                 total = Integer.toString(Integer.parseInt(amount) - sum);
                 String lsSQL2 = ("UPDATE LOGIN_BANK SET amount = '" + total + "' WHERE NAME = '" + buyer + "'");
                 checkAccountStatement.executeUpdate(lsSQL2);
-                //result.next();
                 result.close();
             }
         } catch (SQLException ex) {
@@ -187,9 +177,7 @@ public class BankServer extends UnicastRemoteObject implements BankInterface {
         createClientStatement = connection.prepareStatement("INSERT INTO LOGIN_BANK VALUES (?, ?)");
         findClientStatement = connection.prepareStatement("SELECT * from LOGIN_BANK WHERE NAME = ?");
         deleteClientStatement = connection.createStatement();
-        //checkAccountStatement = connection.prepareCall("SELECT AMOUNT FROM LOGIN_BANK WHERE NAME = ?");
         checkAccountStatement = connection.createStatement();
-        //updateAccountStatement = connection.prepareStatement("UPDATE amount SET amount = amount + (?) WHERE name = ?")
     }
 
     private Connection createDatasource() throws ClassNotFoundException, SQLException {

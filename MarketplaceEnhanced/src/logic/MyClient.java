@@ -41,11 +41,10 @@ public class MyClient extends UnicastRemoteObject implements ClientInterface {
 		this.server = server;
 	}
 
-	// Connects to the server & the bank
 	public boolean connectTo(String inputIP, String inputPortServer, String inputPortBank) {
 		try {
 			setBank((BankInterface) Naming.lookup("rmi://" + inputIP + ":" + inputPortBank + "/bank"));
-			//System.out.println("Connection a la banque OK");
+
 			setServer((ServerInterface) Naming.lookup("rmi://" + inputIP + ":" + inputPortServer + "/server"));
 			System.out.println("Connection au serveur OK");
 			return true;
@@ -81,7 +80,6 @@ public class MyClient extends UnicastRemoteObject implements ClientInterface {
 	}
 
 	public void removeItemMarket(UUID inputId){
-		//int id = inputItem.getId();
 		Iterator<Item> it = getMyItemTable().iterator();
 		Item item;
 		while (it.hasNext()){
@@ -105,7 +103,6 @@ public class MyClient extends UnicastRemoteObject implements ClientInterface {
 	}
 	
 	public void removeItemSold(String inputId){
-		//UUID id = inputItem.getId();
 		Iterator<Item> it = getMyItemTable().iterator();
 		Item item;
 		while (it.hasNext()){

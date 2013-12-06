@@ -14,12 +14,12 @@ public interface ServerInterface extends Remote {
     public void unregisterClient(ClientInterface client) throws RemoteException;
 
     List<ClientInterface> getClients() throws RemoteException;
+    
+    public int getItemToSellTable() throws RemoteException;
 
     void addItemToSell(Item item) throws RemoteException;
 
     void removeItemToSell(String name) throws RemoteException;
-
-    int getItemToSellTable() throws RemoteException;
 
     public ClientInterface getClient() throws RemoteException;
 

@@ -45,11 +45,9 @@ public class AvailableItemsPanel extends JPanel {
         } catch (RemoteException ex) {
             Logger.getLogger(AvailableItemsPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-            for (int i = 0;i<size;i++){                           
-                //System.out.println(tab[i][0] + " " + tab[i][1] + " " + tab[i][2] + " " + tab[i][3] + " " + tab[i][4] + " " + tab[i][5]);
+            for (int i = 0;i<size;i++){                          
                 this.add(new ItemPanel(mainPanel, tab[i][0], tab[i][1], tab[i][2], tab[i][3], tab[i][4], tab[i][5], client, this));
             }
-            //client.getServer().closeQuery();
     }
 
 }

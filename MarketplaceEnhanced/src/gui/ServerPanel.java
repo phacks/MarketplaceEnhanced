@@ -20,7 +20,6 @@ public class ServerPanel extends JPanel {
 		try {
 			IPaddress = InetAddress.getLocalHost().getHostAddress();
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JLabel address = new JLabel("IP Address : " + IPaddress);

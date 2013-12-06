@@ -20,14 +20,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import logic.RejectedException;
-import java.lang.String;
-import java.sql.CallableStatement;
-import java.sql.Types;
 import java.util.UUID;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
 public class MyServer extends UnicastRemoteObject implements ServerInterface {
@@ -94,11 +89,9 @@ public class MyServer extends UnicastRemoteObject implements ServerInterface {
             findClientStatement.setString(1, client.getName());
             result = findClientStatement.executeQuery();
             if (result.next()) {
-                client.alreadyExistsPopUp();
-                //throw new RejectedException("Rejected: Account for: " + client.getName() + " already exists");             
+                client.alreadyExistsPopUp();       
             } else if (password.length() < 8) {
                 client.passwordInvalidPopUp();
-                //throw new RejectedException("Rejected: Password must be 8 characters long");
             } else {
                 createClientStatement.setString(1, client.getName());
                 createClientStatement.setString(2, password);
@@ -153,7 +146,7 @@ public class MyServer extends UnicastRemoteObject implements ServerInterface {
                 result.next();
                 pwd = result.getString(1);
                 result.close();
-                //getPasswordStatement.close();              
+                
                 if (pwd.equals(inputPwd)) {
                     checkValid = true;
                     if (!(getClients().contains(client)))
@@ -246,17 +239,7 @@ public class MyServer extends UnicastRemoteObject implements ServerInterface {
     }
 
     public void removeItemToSell(String id) {
-        /*int id = inputItem.getId();
-         Iterator<Item> it = getItemToSellTable().iterator();
-         Item item;
-         while (it.hasNext()) {
-         item = it.next();
-         if (item.getId() == id) {
-         getItemToSellTable().remove(item);
-         break;
-         }
-         }*/
-        //boolean checkValid = false;
+        
         ResultSet result = null;
         try {
             findItemsStatement.setString(1, id);
@@ -271,16 +254,6 @@ public class MyServer extends UnicastRemoteObject implements ServerInterface {
             Logger.getLogger(MyServer.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
-
-    public void getItemsToSell() {
-        /*Iterator<Item> it = getItemToSellTable().iterator();
-         Item item;
-         if (getItemToSellTable().size() == 0) {
-         }
-         while (it.hasNext()) {
-         item = it.next();
-         }*/
     }
 
     public int getItemToSellTable() throws RemoteException {
@@ -313,11 +286,9 @@ public class MyServer extends UnicastRemoteObject implements ServerInterface {
                 tab[i][5] = s;
                 result.next();
             }
-            //result.close();
         } catch (SQLException ex) {
             Logger.getLogger(MyServer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //result.next();   
+        }  
         return tab;
     }
 
@@ -357,7 +328,7 @@ public class MyServer extends UnicastRemoteObject implements ServerInterface {
     public boolean callBack(ClientInterface buyer, String owner, String price, String id) throws RemoteException {
         Iterator<ClientInterface> it = getClients().iterator();
         ClientInterface clients = null;
-        // ResultSet result = null;
+        
         while (it.hasNext()) {
             clients = it.next();
             if ((clients.getName()).equals(owner)) {
@@ -620,7 +591,6 @@ public class MyServer extends UnicastRemoteObject implements ServerInterface {
         createItemStatement = connectionItems.prepareStatement("INSERT INTO ITEMS VALUES (?, ?, ?, ?, ?, ?)");
         getItemsStatement = connectionItems.createStatement();
         findItemsStatement = connectionItems.prepareStatement("SELECT * from ITEMS WHERE NAME = ?");
-        //result = getItemsStatement.executeQuery("SELECT * FROM ITEMS");
         deleteItemStatement = connectionItems.createStatement();
     }
 

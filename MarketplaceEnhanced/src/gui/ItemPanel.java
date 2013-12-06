@@ -115,19 +115,6 @@ public class ItemPanel extends JPanel implements ActionListener {
 
         this.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        /*if (item.getonSale() == true && (subpanel.getClass()).toString().equals("class gui.MyItemsPanel")) {
-            nameItemLabel.setForeground(Color.GRAY);
-            descriptionItemLabel.setForeground(Color.GRAY);
-            this.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-            sell.setEnabled(false);
-            remove.setEnabled(false);
-        } else if (item.getonSale() == false) {
-            nameItemLabel.setForeground(Color.BLACK);
-            descriptionItemLabel.setForeground(Color.BLACK);
-            this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            sell.setEnabled(true);
-            remove.setEnabled(true);
-        }*/
     }
     
     public ItemPanel(MainPanel mainPanel, Item item, MyClient client, JPanel subpanel) throws RemoteException {

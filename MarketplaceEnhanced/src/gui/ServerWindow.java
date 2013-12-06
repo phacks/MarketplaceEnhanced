@@ -8,7 +8,6 @@ public class ServerWindow extends JFrame{
 	public ServerWindow(int width, int height, String port, String title){
 		this.setSize(width, height);
 		this.setTitle(title);
-		//this.setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ServerPanel serverPanel = new ServerPanel(this.getWidth(), this.getHeight(), port);
 		this.setContentPane(serverPanel);

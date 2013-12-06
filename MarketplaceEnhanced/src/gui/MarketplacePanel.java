@@ -77,7 +77,6 @@ public class MarketplacePanel extends JPanel implements ActionListener {
                     try {
                         account.setText(client.getBank().checkAccount(client.getName()) + " SEK");
                     } catch (RemoteException e1) {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     }
                 } else if (menu.getSelectedIndex() == 0) {
@@ -94,20 +93,16 @@ public class MarketplacePanel extends JPanel implements ActionListener {
                     try {
                         account.setText(client.getBank().checkAccount(client.getName()) + " SEK");
                     } catch (RemoteException e1) {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     }
                 } else if (menu.getSelectedIndex() == 2) {
                     try {
                         account.setText(client.getBank().checkAccount(client.getName()) + " SEK");
                     } catch (RemoteException e1) {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     }
                 } else if (menu.getSelectedIndex() == 4){
                     try {
-                        //logPanel.removeAll();
-                        //int[] tab = client.getServer().getLog(client);
                         logPanel.update();
                         logPanel.repaint();
                         logPanel.revalidate();

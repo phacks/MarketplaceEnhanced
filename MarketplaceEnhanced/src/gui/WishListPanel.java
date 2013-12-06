@@ -66,8 +66,7 @@ public class WishListPanel extends JPanel implements ActionListener {
 			Wish wish = null;
 			try {
 				wish = new Wish(nameI, client, priceI);
-			} catch (RemoteException e2) {
-				// TODO Auto-generated catch block
+			} catch (RemoteException e2){
 				e2.printStackTrace();
 			}
 			try {
@@ -75,21 +74,6 @@ public class WishListPanel extends JPanel implements ActionListener {
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
 			}
-			//JOptionPane.showMessageDialog(null,"You wish " + nameI + " at the following price : " + priceI + " SEK");
-                        /*try {
-				Iterator<WishInterface> it = client.getServer().getWishTable().iterator();
-				listWishPanel.repaint();
-				listWishPanel.revalidate();
-				while (it.hasNext()) {
-					wishInterface = it.next();
-					if (wish.getWisher().getName().equals(client.getName())) {
-						this.add(new WishPanel(mainPanel, wish,client,listWishPanel));
-						break;
-					}
-				}
-			} catch (RemoteException r) {
-				r.printStackTrace();
-			}*/
 			
 		}	
 	}
